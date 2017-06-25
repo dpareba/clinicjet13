@@ -132,10 +132,18 @@ View/Edit Patients Details
 {{-- This is for receptionist functionality --}}
 <div class="row">
   @if (Auth::user()->doctype == "RECEPTIONIST")
-  <div class="col-md-6">
+  <div class="col-md-4">
+      <form action="{{route('slots.assigntoken')}}" method="POST">
+        {{csrf_field()}}
+         <input type="hidden" name="patient_id" value="{{$patient->id}}">
+         <button type="submit" class="btn btn-success btn-block">Assign Token</button>
+      </form>
+   
+  </div>
+  <div class="col-md-4">
     <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <a href="{{route('patients.index')}}" class="btn btn-block btn-danger">Cancel</a>
   </div>
   @else

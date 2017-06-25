@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Patient;
+use App\User;
+use App\Clinic;
+use Session;
 
 class SlotController extends Controller
 {
@@ -80,5 +84,13 @@ class SlotController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function assigntoken(Request $request){
+        //dd($request);
+        $patient = Patient::findOrFail($request->patient_id);
+        $clinicid = Clinic::where(['cliniccode'=>Session::get('cliniccode')])->first()->id;
+        $users = Clinic::find($clinicid)->users->where('doctype','!=','RECEPTIONIST');
+        return view('slots.assigntoken')->withPatient($patient)->withUsers($users);
     }
 }

@@ -164,6 +164,11 @@ Route::resource('tests','TestController');
 
 Route::resource('slots','SlotController');
 
+Route::post('slots.assigntoken',[
+	'as'=>'slots.assigntoken',
+	'uses'=>'SlotController@assigntoken'
+	]);
+
 
 
 
