@@ -1589,7 +1589,7 @@ $('#addeftemplate').click(function(e){
 		data: $("form.formef").serialize(),
 		success: function(response){
 			$("#efModal").modal('hide');
-			console.log(JSON.stringify(response));
+			//console.log(JSON.stringify(response));
 			//var obj = jQuery.parseJSON(response.responseText);
 			//console.log(obj);
 			//$templates = JSON.stringify(response);
@@ -1599,11 +1599,11 @@ $('#addeftemplate').click(function(e){
 			 if (response.length > 0) {
 				$('#templatename').empty();
 				//$('#templatename1').hide();
-				$('#templatename').append('<option value="None"  selected="">Hello</option>');
+				$('#templatename').append('<option value="None"  selected="">None</option>');
 			 	for(i=0; i<response.length; i++){
 			 		
-			 		$('#templatename').append('<option value="'+response[i]['id']+'">'+response[i]['templatename']+'</option>');
-			  		console.log(response[i]['id']);
+			 		$('#templatename').append('<option value="'+response[i]['templatename']+'">'+response[i]['templatename']+'</option>');
+			  		//console.log(response[i]['id']);
 			 	}
 			  }else{
 			  	$('#templatename').empty();
@@ -1612,7 +1612,7 @@ $('#addeftemplate').click(function(e){
 
 			},
 			error: function(data){
-				console.log(data.responseText);
+				//console.log(data.responseText);
 				var obj = jQuery.parseJSON(data.responseText);
 				if(obj.templatenameef){
 					$("#templatenameef-error-label").addClass("has-warning");
@@ -1627,11 +1627,14 @@ $('#addeftemplate').click(function(e){
 });
 
 $('#efModal').on('hidden.bs.modal',function(){
-	$(this).find("label").val('').end();
+	//$(this).find("label").val('').end();
+	
+	$('#templatenameef').val('');
 	$(this).find("textarea").val('').end();
 });
 
 $('#templatename').change(function(e){
+	e.preventDefault();
 	$(this).find("option:selected").each(function(){
 		var optVal = $(this).attr("value");
 		console.log(optVal);

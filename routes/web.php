@@ -162,5 +162,8 @@ Route::post('storeef',[
 Route::resource('tests','TestController');
 
 
+Route::resource('slots','SlotController');
+
+
 
 

@@ -19,4 +19,8 @@ class Patient extends Model
    // public function reports(){
    // 		return $this->hasMany('App\Report');
    // }
+   // 
+   public function slots(){
+        return $this->hasMany('App\Slot');
+   }
 }
